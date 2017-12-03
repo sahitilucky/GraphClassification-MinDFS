@@ -1,0 +1,10 @@
+1.Extract the jars 
+2.Running the 3 algorithms as mentioned in the README's of 3 tar files gave the times  
+
+for fsg:
+./fsg -s <support> filename -p -t
+for gspan:
+gSpan -f filename -s frequency [-o] [-i]
+for Gaston:
+gaston 7 Chemical_340 Chemical_340.out
+

@@ -1,0 +1,3 @@
+Please put the Graphlib(one given for subgraph isomorphism) folder in Q2 folder .
+run classify.sh args[0] args[1] args[2] args[3]
+Put all input files in SS folder.

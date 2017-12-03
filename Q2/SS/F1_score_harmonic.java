@@ -1,0 +1,62 @@
+
+
+public class F1_score_harmonic {
+	public Integer[] predicted_labels;
+	public Integer actual_labels[];
+	
+
+	public float[] f1_scores() {
+		int class_num, instance_num, tp, tn, fp, fn;
+		float precision, recall;
+		float[] F1 = new float[2];
+		for (class_num = 0; class_num < 2; class_num++) {		// 2 classes
+			precision = 0;
+			recall = 0;
+			tp = 0;
+			tn = 0;
+			fp = 0;
+			fn = 0;
+			for (instance_num = 0; instance_num < predicted_labels.length; instance_num++) {
+				if (actual_labels[instance_num] == class_num) { // true
+					if (predicted_labels[instance_num] == class_num)
+						tp++;
+					else
+						fn++;
+				} else { // false
+					if (predicted_labels[instance_num] == class_num)
+						fp++;
+					else
+						tn++;
+				}
+			}
+			if (tp + fp == 0)
+				precision = 0;
+			else
+				precision = (float) tp / (float) (tp + fp);
+			if (tp + fn == 0)
+				recall = 0;
+			else
+				recall = (float) tp / (float) (tp + fn);
+			if (precision + recall != 0)
+				F1[class_num] = 2 * precision * recall / (precision + recall);
+			else
+				F1[class_num] = 0;
+
+			System.out.println(class_num + "  " + tp + "  " + tn + "  " + fp
+					+ "  " + fn + "  " + precision + "  " + recall + "  "
+					+ F1[class_num]);
+		}
+		return F1;
+	}
+
+	public float harmonic_mean(float[] F1s) {
+		float inv_sum = 0;
+		int i;
+		for (i = 0; i < F1s.length; i++)
+			if (F1s[i] != 0)
+				inv_sum += (float) 1 / F1s[i];
+			else
+				return 0;
+		return (float) F1s.length / inv_sum;
+	}
+}
